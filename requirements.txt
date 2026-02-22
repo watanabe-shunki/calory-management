@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+streamlit
+psycopg2-binary
+pymysql
+cryptography
+pytest
