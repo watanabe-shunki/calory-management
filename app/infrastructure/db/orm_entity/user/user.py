@@ -8,6 +8,7 @@ from app.infrastructure.db.orm_entity.types import (
 class UserORM(Base):
     __tablename__ = "user"
     # TODO: ↓調査
+    # DBコメント(メタ情報)
     __table_args__ = {"comment": "User"}
 
     id: Mapped[int] = mapped_column(
