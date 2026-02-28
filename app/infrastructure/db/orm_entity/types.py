@@ -5,6 +5,9 @@ from sqlalchemy import BigInteger, MetaData, String
 # TODO: Annotatedについて調査
 str1 = Annotated[str, 1]
 str2 = Annotated[str, 2]
+str3 = Annotated[str, 3]
+str4 = Annotated[str, 4]
+str10 = Annotated[str, 10]
 str20 = Annotated[str, 20]
 
 bigint = Annotated[int, "bigint"]
