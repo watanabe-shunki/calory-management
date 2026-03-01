@@ -1,11 +1,12 @@
 from datetime import date
-from sqlalchemy import Integer, String, ForeignKey, Date
+from sqlalchemy import Integer, String, ForeignKey, Date, func, Enum
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.infrastructure.db.orm_entity.orm_entity import Base
 from app.infrastructure.db.orm_entity.types import (
-    str3, str20
+    str3
 )
+from app.domain.body_info.enums.activity_level import ActivityStatus
 
 
 class BodyProfiles(Base):
@@ -35,13 +36,14 @@ class BodyProfiles(Base):
         nullable=False,
         comment="体重"
     )
-    activity_level: Mapped[str20] = mapped_column(
-        String,
+    activity_status: Mapped[ActivityStatus] = mapped_column(
+        Enum(ActivityStatus, name="activity_status"),
         nullable=False,
         comment="生活レベル"
     )
     recorded_at: Mapped[date] = mapped_column(
         Date,
         nullable=False,
+        server_default=func.current_date(),
         comment="登録日"
     )
