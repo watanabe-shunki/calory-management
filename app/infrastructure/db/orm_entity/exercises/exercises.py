@@ -10,7 +10,7 @@ from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRe
 
 
 
-class Exercises(Base):
+class ExercisesORM(Base):
     __tablename__ = "exercises"
 
     id: Mapped[int] = mapped_column(
