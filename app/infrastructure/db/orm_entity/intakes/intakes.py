@@ -8,7 +8,7 @@ from app.infrastructure.db.orm_entity.types import (
 from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRecords
 
 
-class Intake(Base):
+class IntakeORM(Base):
     __tablename__ = "intakes"
 
     id: Mapped[int] = mapped_column(

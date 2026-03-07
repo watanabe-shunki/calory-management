@@ -7,7 +7,7 @@ from app.infrastructure.db.orm_entity.types import (
 )
 
 
-class Goals(Base):
+class GoalsORM(Base):
     __tablename__ = 'goals'
     id: Mapped[int] = mapped_column(
         Integer,

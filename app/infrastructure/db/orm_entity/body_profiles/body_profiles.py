@@ -9,7 +9,7 @@ from app.infrastructure.db.orm_entity.types import (
 from app.domain.body_info.enums.activity_level import ActivityStatus
 
 
-class BodyProfiles(Base):
+class BodyProfilesORM(Base):
     __tablename__ = "body_profiles"
 
     __table_args__ = {"comment": "ユーザー身体情報"}

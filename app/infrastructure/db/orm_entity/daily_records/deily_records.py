@@ -7,7 +7,7 @@ from app.infrastructure.db.orm_entity.intakes.intakes import Intake
 from app.infrastructure.db.orm_entity.exercises.exercises import Exercises
 
 
-class DailyRecords(Base):
+class DailyRecordsORM(Base):
     __tablename__ = "daily_records"
     id: Mapped[int] = mapped_column(
         Integer,
