@@ -22,17 +22,16 @@ class BodyProfilesORM(Base):
     )
     user_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey("users.id"),
-        nullable=False,
-        ondelete="CASCADE"
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
     )
     height: Mapped[str3] = mapped_column(
-        String,
+        String(3),
         nullable=False,
         comment="身長"
     )
     weight_kg: Mapped[str3] = mapped_column(
-        String,
+        String(3),
         nullable=False,
         comment="体重"
     )
@@ -44,6 +43,6 @@ class BodyProfilesORM(Base):
     recorded_at: Mapped[date] = mapped_column(
         Date,
         nullable=False,
-        server_default=func.current_date(),
+        default=date.today(),
         comment="登録日"
     )

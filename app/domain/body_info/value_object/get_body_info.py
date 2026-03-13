@@ -14,6 +14,10 @@ class HeightCm:
             raise ValueError("height out of range")
         self._value = value
 
+    @property
+    def value(self) -> str:
+        return self._value
+
 class WeightKg:
     def __init__(self, value: str):
         if value is None:
@@ -21,14 +25,17 @@ class WeightKg:
         if not (30 <= int(value) <= 300):
             raise ValueError("weight out of range")
         self._value = value
+    @property
+    def value(self) -> str:
+        return self._value
 
 class BodyInfo:
     def __init__(
         self,
         height: HeightCm,
         weight: WeightKg,
-        activity: ActivityStatus,
+        activity_status: ActivityStatus,
     ):
         self.height = height
         self.weight = weight
-        self.activity = activity
+        self.activity_status = activity_status
