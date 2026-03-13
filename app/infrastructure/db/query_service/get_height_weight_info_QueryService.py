@@ -10,7 +10,7 @@ from app.infrastructure.db.orm_entity.body_profiles.body_profiles import BodyPro
 from app.infrastructure.db.orm_entity.users.users import UserORM
 
 
-class GetHeightWeightInfoQueryService(AbstractsGetHeightWeightInfoQueryService):
+class HeightWeightInfoQueryService(AbstractsGetHeightWeightInfoQueryService):
     def __init__(
         self,
         db_session: Session
@@ -39,7 +39,7 @@ class GetHeightWeightInfoQueryService(AbstractsGetHeightWeightInfoQueryService):
             return BodyInfo(
                 height=height,
                 weight=weight,
-                activity=activity_status
+                activity_status=activity_status
             )
         except:
             raise HTTPException(status_code=404, detail="身体情報を登録してください")
