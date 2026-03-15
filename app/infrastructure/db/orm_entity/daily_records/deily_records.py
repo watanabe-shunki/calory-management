@@ -3,8 +3,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Date, Integer, ForeignKey, UniqueConstraint, Index
 from typing import List
 from app.infrastructure.db.orm_entity.orm_entity import Base
-from app.infrastructure.db.orm_entity.intakes.intakes import Intake
-from app.infrastructure.db.orm_entity.exercises.exercises import Exercises
 
 
 class DailyRecordsORM(Base):
@@ -17,7 +15,7 @@ class DailyRecordsORM(Base):
     )
     user_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey("user.id", ondelete="CASCADE"),
+        ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False,
         comment="ユーザーID"
     )
@@ -26,16 +24,7 @@ class DailyRecordsORM(Base):
         nullable=False,
         comment="日付"
     )
-    # 食事情報
-    intakes: Mapped[List["Intake"]] = relationship(
-        back_populates="daily_records",
-        cascade="all, delete-orphan"
-    )
-    # 運動情報
-    exercises: Mapped[List["Exercises"]] = relationship(
-        back_populates="daily_records",
-        cascade="all, delete-orphan"
-    )
+
     """
     一意の制約を定義
     同じ日付レコード重複防止

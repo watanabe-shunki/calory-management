@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-from streamlit import rerun
 
 from app.domain.user.value_object.get_user_name import UserName
 from app.usecase.create_user.user_Repository import AbstractCreateUserRepository

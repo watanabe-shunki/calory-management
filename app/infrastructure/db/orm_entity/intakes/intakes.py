@@ -5,7 +5,7 @@ from app.infrastructure.db.orm_entity.orm_entity import Base
 from app.infrastructure.db.orm_entity.types import (
      str2,str3 ,str4, str20
 )
-from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRecords
+from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRecordsORM
 
 
 class IntakeORM(Base):
@@ -37,7 +37,7 @@ class IntakeORM(Base):
         nullable=False,
         comment="タンパク質"
     )
-    daily_records: Mapped[DailyRecords] = relationship(
+    daily_records: Mapped[DailyRecordsORM] = relationship(
         back_populates="intakes",
         cascade="all, delete-orphan"
     )

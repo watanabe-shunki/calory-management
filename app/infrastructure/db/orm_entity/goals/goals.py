@@ -16,10 +16,9 @@ class GoalsORM(Base):
         autoincrement=True,
     )
     user_id: Mapped[int] = mapped_column(
-        String,
+        Integer,
         ForeignKey("users.id"),
         nullable=False,
-        ondelete= "CASCADE"
     )
     basal_calories: Mapped[str4] = mapped_column(
         String,
