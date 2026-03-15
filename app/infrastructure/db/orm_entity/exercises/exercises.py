@@ -6,7 +6,7 @@ from app.infrastructure.db.orm_entity.orm_entity import Base
 from app.infrastructure.db.orm_entity.types import (
     str3, str10
 )
-from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRecords
+from app.infrastructure.db.orm_entity.daily_records.deily_records import DailyRecordsORM
 
 
 
@@ -33,7 +33,7 @@ class ExercisesORM(Base):
         nullable=False,
         comment="消費カロリー"
     )
-    daily_records: Mapped[DailyRecords] = relationship(
+    daily_records: Mapped[DailyRecordsORM] = relationship(
         back_populates="exercises",
         cascade="all, delete-orphan"
     )
