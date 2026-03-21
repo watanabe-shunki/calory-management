@@ -5,7 +5,7 @@ from app.domain.body_info.value_object.get_body_info import BodyInfo
 from app.usecase.create_body_info.create_body_info_Repository import AbstractCreateBodyInfoRepository
 
 from app.infrastructure.db.orm_entity.body_profiles.body_profiles import BodyProfilesORM
-from app.infrastructure.db.orm_entity.users.users import UserORM
+from app.infrastructure.db.orm_entity.users.users import UsersORM
 
 
 class CreateBodyInfoRepository(AbstractCreateBodyInfoRepository):

@@ -23,21 +23,21 @@ class IntakeORM(Base):
         comment="日単位のデータのID"
     )
     food_name: Mapped[str20] = mapped_column(
-        String,
+        String(20),
         nullable=False,
         comment="食事名"
     )
     calorie: Mapped[str4] = mapped_column(
-        String,
+        String(4),
         nullable=False,
         comment="カロリー"
     )
     protein: Mapped[str2] = mapped_column(
-        String,
+        String(2),
         nullable=False,
         comment="タンパク質"
     )
     daily_records: Mapped[DailyRecordsORM] = relationship(
-        back_populates="intakes",
-        cascade="all, delete-orphan"
+        "DailyRecordsORM",
+        back_populates="intakes"
     )

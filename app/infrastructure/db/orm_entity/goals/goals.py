@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.infrastructure.db.orm_entity.orm_entity import Base
 from app.infrastructure.db.orm_entity.types import (
@@ -21,17 +21,22 @@ class GoalsORM(Base):
         nullable=False,
     )
     basal_calories: Mapped[str4] = mapped_column(
-        String,
+        String(4),
         nullable=False,
         comment="基礎代謝"
     )
     deficit: Mapped[str4] = mapped_column(
-        String,
+        String(4),
         nullable=False,
         comment="赤字カロリー"
     )
     protein: Mapped[str3] = mapped_column(
-        String,
+        String(3),
         nullable=False,
         comment="タンパク質"
+    )
+
+    users = relationship(
+        "UsersORM",
+        back_populates="goals"
     )
