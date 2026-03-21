@@ -24,16 +24,16 @@ class ExercisesORM(Base):
         comment="日単位のデータのID"
     )
     exercise_name: Mapped[str10] = mapped_column(
-        String,
+        String(10),
         nullable=False,
         comment="運動名"
     )
     calories_burned: Mapped[str3] = mapped_column(
-        String,
+        String(3),
         nullable=False,
         comment="消費カロリー"
     )
     daily_records: Mapped[DailyRecordsORM] = relationship(
+        "DailyRecordsORM",
         back_populates="exercises",
-        cascade="all, delete-orphan"
     )

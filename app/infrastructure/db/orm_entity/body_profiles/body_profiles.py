@@ -1,12 +1,14 @@
 from datetime import date
 from sqlalchemy import Integer, String, ForeignKey, Date, func, Enum
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.infrastructure.db.orm_entity import UsersORM
 from app.infrastructure.db.orm_entity.orm_entity import Base
 from app.infrastructure.db.orm_entity.types import (
     str3
 )
 from app.domain.body_info.enums.activity_level import ActivityStatus
+from app.infrastructure.db.orm_entity.user.user import UserORM
 
 
 class BodyProfilesORM(Base):
@@ -45,4 +47,9 @@ class BodyProfilesORM(Base):
         nullable=False,
         default=date.today(),
         comment="登録日"
+    )
+
+    users: Mapped[UsersORM] = relationship(
+        "UsersORM",
+        back_populates="body_profiles",
     )

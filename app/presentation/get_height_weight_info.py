@@ -14,7 +14,10 @@ from app.presentation.model.requestbody.get_height_weight_info.request_get_heigh
 from app.presentation.model.responsebody.get_height_weight_info.response_get_height_weight_info import BodyInfoResponse
 router = APIRouter()
 
-@router.get("/get_body_info/{user_id}", response_model=BodyInfoResponse)
+@router.get(
+    "/get_body_info/{user_id}",
+    response_model=BodyInfoResponse
+)
 def get_body_info_by_user_id(
         user_id: int,
         session: Session = Depends(get_db_session)
@@ -24,8 +27,8 @@ def get_body_info_by_user_id(
     user_id = UserId(user_id)
     result = usecase.get_height_weight_info(user_id)
     return BodyInfoResponse(
-        height=result.height.value,
-        weight=result.weight.value,
+        height=str(result.height), # TODO: ここ強引に型を変えている感じあるので後で調査
+        weight=str(result.weight), # TODO: ここ強引に型を変えている感じあるので後で調査
         activity_status=result.activity_status,
-        activity_status_label=result.activity_status.label
+        activity_status_label=result.activity_status
     )

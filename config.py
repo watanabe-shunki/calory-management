@@ -8,13 +8,7 @@ from app.infrastructure.db.orm_entity.orm_entity import Base
 import app.infrastructure.db.orm_entity
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # 起動時処理
-    Base.metadata.create_all(engine)
-    yield
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 for router in [
     get_user.router,
