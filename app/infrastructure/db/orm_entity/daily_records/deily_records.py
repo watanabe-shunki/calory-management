@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Date, Integer, ForeignKey, UniqueConstraint, Index
 from typing import List
 from app.infrastructure.db.orm_entity.orm_entity import Base
-from app.infrastructure.db.orm_entity.user.user import UserORM
+from app.infrastructure.db.orm_entity.users.users import UsersORM
 
 
 class DailyRecordsORM(Base):
@@ -25,7 +25,7 @@ class DailyRecordsORM(Base):
         nullable=False,
         comment="日付"
     )
-    users: Mapped[UserORM] = relationship(
+    users: Mapped[UsersORM] = relationship(
         "UsersORM",
         back_populates="daily_records",
     )

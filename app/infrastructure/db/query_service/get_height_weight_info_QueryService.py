@@ -36,7 +36,7 @@ class HeightWeightInfoQueryService(AbstractsGetHeightWeightInfoQueryService):
                     BodyProfilesORM.weight_kg,
                     BodyProfilesORM.activity_status
                 )
-                .where(BodyProfilesORM.user_id == user_id.value)
+                .where(BodyProfilesORM.user_id == user_id.value) # UserId型の変数なので、int型のBodyProfilesORM.user_idと一致しない。そのため.valueを行う。
                 .order_by(BodyProfilesORM.recorded_at.desc())
                 .limit(1)
             )
@@ -51,6 +51,7 @@ class HeightWeightInfoQueryService(AbstractsGetHeightWeightInfoQueryService):
                 raise HTTPException(status_code=404, detail="身体情報が存在しません")
 
             height, weight, activity_status = result
+
             return BodyInfo(
                 height=height,
                 weight=weight,

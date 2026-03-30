@@ -29,6 +29,6 @@ def get_body_info_by_user_id(
     return BodyInfoResponse(
         height=str(result.height), # TODO: ここ強引に型を変えている感じあるので後で調査
         weight=str(result.weight), # TODO: ここ強引に型を変えている感じあるので後で調査
-        activity_status=result.activity_status,
+        activity_status=result.activity_status.label,
         activity_status_label=result.activity_status
     )
