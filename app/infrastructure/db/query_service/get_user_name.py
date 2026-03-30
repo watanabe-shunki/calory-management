@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 from app.domain.user.value_object.get_user_name import UserName, UserId
 from app.usecase.get_user.user_Query_Service import AbstractGetUserNameQueryService
-from app.infrastructure.db.orm_entity.user.user import UserORM
+from app.infrastructure.db.orm_entity.users.users import UsersORM
 
 
 @dataclass
@@ -26,11 +26,11 @@ class UserNameQueryService(AbstractGetUserNameQueryService):
     ) -> UserName:
         try:
             query = (
-                select(UserORM.name)
-                .where(UserORM.id == user_id.value)
+                select(UsersORM.id)
+                .where(UsersORM.id == user_id.value)
             )
             result = self.db_session.scalar(query)
 
-            return UserName(result)
+            return UserId(result)
         except:
             raise HTTPException(status_code=500, detail="Server Error")

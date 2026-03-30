@@ -8,7 +8,6 @@ from app.infrastructure.db.orm_entity.types import (
     str3
 )
 from app.domain.body_info.enums.activity_level import ActivityStatus
-from app.infrastructure.db.orm_entity.user.user import UserORM
 
 
 class BodyProfilesORM(Base):

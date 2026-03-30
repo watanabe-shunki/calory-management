@@ -8,3 +8,7 @@ pymysql
 cryptography
 pytest
 alembic
+google-auth
+jinja2
+httpx
+python-dotenv

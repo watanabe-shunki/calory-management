@@ -10,11 +10,7 @@ class ActivityStatus(str, Enum):
 
     @property
     def label(self):
-        return {
-            """
-            MEMO: 画面表示用
-            status = ActivityLStatus.OFFICE
-            responses = { "activity": status.label }
-            """
-            "OFFICE": "オフィスワーク",
-        }[self.value]
+        mapping = {
+            ActivityStatus.OFFICE: "オフィスワーク",
+        }
+        return  mapping.get(self, "不明")
