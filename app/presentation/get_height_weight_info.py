@@ -16,7 +16,8 @@ router = APIRouter()
 
 @router.get(
     "/get_body_info/{user_id}",
-    response_model=BodyInfoResponse
+    response_model=BodyInfoResponse,
+    summary="身体情報を取得するAPI"
 )
 def get_body_info_by_user_id(
         user_id: int,
