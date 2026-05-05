@@ -17,7 +17,8 @@ router = APIRouter()
 @router.post(
     "/create_body_info",
     response_model=None,
-    status_code=status.HTTP_201_CREATED
+    status_code=status.HTTP_201_CREATED,
+    summary="身体情報を登録するAPI"
 )
 def create_body_info(
         request: BodyInfosRequestBody,
