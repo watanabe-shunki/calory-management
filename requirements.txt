@@ -12,3 +12,4 @@ google-auth
 jinja2
 httpx
 python-dotenv
+jinja2
