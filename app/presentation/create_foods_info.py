@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from starlette import status
 
 from app.domain.foods_info.value_object.foods_info import (
-    FoodsInfo, MealDate,FoodsName, Calory, Protein
+    FoodsInfo, FoodsName, Calory, Protein
 )
 from app.infrastructure.session import get_db_session
 from app.infrastructure.db.repository.create_foods_info_repository import CreateFoodsInfoRepository

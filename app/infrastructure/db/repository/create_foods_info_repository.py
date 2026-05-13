@@ -24,7 +24,7 @@ class CreateFoodsInfoRepository(AbstractCreateFoodsInfoRepository):
         try:
             daily = self.get_daily_records(
                 user_id,
-                foods_info.meal_date
+                date.today()
             )
             if not daily:
                 daily = DailyRecordsORM(
