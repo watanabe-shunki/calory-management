@@ -1,3 +1,4 @@
+from datetime import date
 from sqlalchemy.orm import Session
 from sqlalchemy import select, and_
 
@@ -28,7 +29,7 @@ class CreateFoodsInfoRepository(AbstractCreateFoodsInfoRepository):
             if not daily:
                 daily = DailyRecordsORM(
                     user_id=user_id,
-                    date=foods_info.meal_date.foodsdate
+                    date=date.today(),
                 )
                 self.db_session.add(daily)
                 self.db_session.flush()
