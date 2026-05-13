@@ -1,4 +1,3 @@
-from datetime import date
 from fastapi import Depends, APIRouter
 from sqlalchemy.orm import Session
 from starlette import status
@@ -29,7 +28,6 @@ def create_foods_info(
     usecase = CreateFoodsInfo(foods_repository)
 
     foods_info = FoodsInfo(
-        mealdate=MealDate(date.today()),
         foodsname=FoodsName(request.foods_name),
         calories=Calory(request.calory),
         protein=Protein(request.protein),

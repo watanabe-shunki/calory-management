@@ -6,16 +6,16 @@ from app.infrastructure.db.orm_entity.types import metadata
 
 
 # 日時
-class MealDate:
-    def __init__(self, foodsdate: date):
-        if foodsdate > date.today():
-            raise ValueError("date cannot be in the future")
-
-        self._foodsdate = foodsdate
-
-    @property
-    def  foodsdate(self) -> date:
-        return self._foodsdate
+# class MealDate:
+#     def __init__(self, foodsdate: date):
+#         if foodsdate > date.today():
+#             raise ValueError("date cannot be in the future")
+#
+#         self._foodsdate = foodsdate
+#
+#     @property
+#     def  foodsdate(self) -> date:
+#         return self._foodsdate
 
 # 食事名
 class FoodsName:
@@ -58,19 +58,19 @@ class Protein:
 class FoodsInfo:
     def __init__(
         self,
-        mealdate: MealDate,
+        # mealdate: MealDate,
         foodsname: FoodsName,
         calories: Calory,
         protein: Protein,
     ):
-        self._mealdate = mealdate
+        # self._mealdate = mealdate
         self._foodsname = foodsname
         self._calories = calories
         self._protein = protein
 
-    @property
-    def meal_date(self):
-        return self._mealdate
+    # @property
+    # def meal_date(self):
+    #     return self._mealdate
 
     @property
     def foods_name(self):
