@@ -1,0 +1,54 @@
+from datetime import date
+from sqlalchemy import Integer, String, ForeignKey, Date, func, Enum
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from backend.app.infrastructure.db.orm_entity import UsersORM
+from backend.app.infrastructure.db.orm_entity.orm_entity import Base
+from backend.app.infrastructure.db.orm_entity.types import (
+    str3
+)
+from backend.app.domain.body_info.enums.activity_level import ActivityStatus
+
+
+class BodyProfilesORM(Base):
+    __tablename__ = "body_profiles"
+
+    __table_args__ = {"comment": "ユーザー身体情報"}
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+        comment="主キー"
+    )
+    user_id: Mapped[int] = mapped_column(
+        Integer,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    height: Mapped[str3] = mapped_column(
+        String(3),
+        nullable=False,
+        comment="身長"
+    )
+    weight_kg: Mapped[str3] = mapped_column(
+        String(3),
+        nullable=False,
+        comment="体重"
+    )
+    activity_status: Mapped[ActivityStatus] = mapped_column(
+        Enum(ActivityStatus, name="activity_status"),
+        nullable=False,
+        comment="生活レベル"
+    )
+    recorded_at: Mapped[date] = mapped_column(
+        Date,
+        nullable=False,
+        default=date.today(),
+        comment="登録日"
+    )
+
+    users: Mapped[UsersORM] = relationship(
+        "UsersORM",
+        back_populates="body_profiles",
+    )

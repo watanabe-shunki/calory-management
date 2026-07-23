@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.infrastructure.db.orm_entity.orm_entity import Base
+from backend.app.infrastructure.db.orm_entity.orm_entity import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
