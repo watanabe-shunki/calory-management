@@ -4,11 +4,11 @@ from backend.app.domain.body_info.enums.activity_level import ActivityStatus
 
 class BodyInfosRequestBody(BaseModel):
     height: str = Field(
-        max_length=3,
+        max_length=4,
         description="身長"
     )
     weight: str = Field(
-        max_length=3,
+        max_length=5,
         description="体重"
     )
     activity_status: ActivityStatus = Field(

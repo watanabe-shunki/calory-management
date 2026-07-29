@@ -10,7 +10,7 @@ class HeightCm:
     def __init__(self, value: str):
         if value is None:
             raise ValueError("invalid height value")
-        if not (100 <= int(value) <= 230):
+        if not (100 <= float(value) <= 230):
             raise ValueError("height out of range")
         self._value = value
 
@@ -22,7 +22,7 @@ class WeightKg:
     def __init__(self, value: str):
         if value is None:
             raise ValueError("invalid weight value")
-        if not (30 <= int(value) <= 300):
+        if not (30 <= float(value) <= 300):
             raise ValueError("weight out of range")
         self._value = value
     @property

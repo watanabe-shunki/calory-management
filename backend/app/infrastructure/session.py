@@ -7,7 +7,7 @@ Base.metadata.create_all(engine) に関してはtests/conftest.pyなどで、tes
 ひとまず最小構成でuserのDB操作をテストでＣＲＵＤ層さできるところまで行う。
 画面なしでPyTestで動作確認予定
 """
-engine = create_engine("mysql+pymysql://mysqluser:Shunki970521@localhost:3306/mydb")
+engine = create_engine("mysql+pymysql://root:Shunki970521@localhost:3306/calorie_management")
 
 """MEMO: 以下の関数をエンドポイントの引数で
 async def get_user(

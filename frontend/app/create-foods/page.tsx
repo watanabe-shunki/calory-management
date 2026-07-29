@@ -26,12 +26,19 @@ export default function FoodsInfoFormPage() {
             console.error("登録失敗" + res.status);
             const text = await res.text();
             console.log("response", text);
+            setMessage("登録に失敗しました。");
             return;
         }
 
         const data = await res.json();
         console.log("登録成功", data);
+        setFoodsName("");
+        setCalories("");
+        setProtein("");
+        setMessage("登録が完了しました。");
     };
+
+    const [message, setMessage] = useState("");
 
     return (
         <div className="container-app">
@@ -68,6 +75,9 @@ export default function FoodsInfoFormPage() {
                 <button type="submit" className="btn btn-primary w-full">
                     登録
                 </button>
+                {message && (
+                    <p className="mt-4 text-center">{message}</p>
+                )}
             </form>
         </div>
     );

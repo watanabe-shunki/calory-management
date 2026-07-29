@@ -8,7 +8,7 @@ class BodyInfoResponse(BaseModel):
     )
     weight: str = Field(
         min_length=2,
-        max_length=3
+        max_length=5
     )
     activity_status: str = Field(
         ...,

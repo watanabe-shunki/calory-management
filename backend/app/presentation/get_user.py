@@ -8,7 +8,7 @@ from backend.app.presentation.model.requestbody.get_user.user_id import UserRequ
 from backend.app.presentation.model.responsebody.get_user.user_name import UserNameResponseBody
 router = APIRouter()
 
-@router.post("/username", response_model=UserNameResponseBody)
+@router.post("/{user_id}}", response_model=UserNameResponseBody)
 def read_username(
         request: UserRequestBody,
         db_session: Session = Depends(get_db_session)

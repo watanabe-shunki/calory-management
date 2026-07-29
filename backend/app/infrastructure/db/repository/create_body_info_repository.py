@@ -21,7 +21,7 @@ class CreateBodyInfoRepository(AbstractCreateBodyInfoRepository):
     ) -> None:
         try:
             entity = BodyProfilesORM(
-                user_id=user_id,
+                user_id=user_id.value,
                 height=body_info.height.value,
                 weight_kg=body_info.weight.value,
                 activity_status=body_info.activity_status

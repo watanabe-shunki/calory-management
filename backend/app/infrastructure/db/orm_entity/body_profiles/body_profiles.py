@@ -32,7 +32,7 @@ class BodyProfilesORM(Base):
         comment="身長"
     )
     weight_kg: Mapped[str3] = mapped_column(
-        String(3),
+        String(5),
         nullable=False,
         comment="体重"
     )

@@ -1,16 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BodyInfoFormPage() {
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
     const [activityStatus, setActivityStatus] = useState("OFFICE");
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // 暫定対応
+        const user_id = 1;
 
-        const res = await fetch("http://localhost:8000/create_body_info", {
+        const res = await fetch(`http://localhost:8000/create_body_info/${user_id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -32,8 +36,16 @@ export default function BodyInfoFormPage() {
         }
 
         const data = await res.json();
+        router.refresh();
         console.log("登録成功", data);
+        setHeight("");
+        setWeight("");
+        setActivityStatus("OFFICE");
+        setMessage("身体情報が正常に登録されました。");
+
     };
+
+    const [message, setMessage] = useState("");
 
     return (
         <div className="container-app">
@@ -76,6 +88,9 @@ export default function BodyInfoFormPage() {
                 <button type="submit" className="btn btn-primary w-full">
                     登録
                 </button>
+                {message && (
+                    <p className="mt-4 text-center">{message}</p>
+                )}
             </form>
         </div>
     );

@@ -1,8 +1,10 @@
+import BodyInfoForm from "./BodyInfoForm";
+
 export default async function BodyInfoPage() {
     const res = await fetch(
-        "http://localhost:8000/get_body_info/1",
+        "http://localhost:8000/get_body_info/1", // "http://localhost:8000/get_body_info/${user_id}"の記述は後日対応。一旦user_id=1でハードコーディングしておく
         { cache: "no-store" }
-    )
+    );
 
     const bodyInfo = await res.json()
 
@@ -30,6 +32,8 @@ export default async function BodyInfoPage() {
                     <div className="kpi-value">{bodyInfo.activity_status}</div>
                 </div>
             </div>
+            {/* 登録フォームを表示 */}
+            <BodyInfoForm />
         </div>
     )
 }
