@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from backend.app.domain.user.value_object.get_user_name import UserName
+from backend.app.domain.user.value_object.user_info import UserName
 
 class AbstractCreateUserRepository(ABC):
     @abstractmethod

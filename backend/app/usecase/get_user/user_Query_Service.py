@@ -1,7 +1,14 @@
 from abc import ABC, abstractmethod
 
-from backend.app.domain.user.value_object.user_info import UserName, UserId, UserEmail
-from backend.app.infrastructure.security.get_user import UserDTO
+from backend.app.domain.user.value_object.user_info import UserName, UserId, UserEmail, UserPassword
+from dataclasses import dataclass
+
+
+@dataclass
+class UserDTO:
+     email: UserEmail
+     password: UserPassword
+     is_active: bool
 
 
 class AbstractGetUserNameQueryService(ABC):

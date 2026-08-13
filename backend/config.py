@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-from pydantic_settings import SettingsConfigDict
-from pydantic.v1 import BaseSettings
 
 from backend.app.presentation import (
     get_user
@@ -14,7 +12,7 @@ from backend.app.presentation import (
     create_foods_info,
     get_intakes_info,
 )
-from backend.app.presentation.auth.login import login
+from backend.app.presentation.auth import login
 
 app = FastAPI()
 
@@ -38,16 +36,4 @@ for router in [
     login.router,
 ]:
     app.include_router(router)
-
-class Settings(BaseSettings):
-    SECRET_KEY: str
-    ALGORITHM: str
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-
-    DATABASE_URL: str
-
-    GOOGLE_CLIENT_ID: str
-    GOOGLE_CLIENT_SECRET: str
-
-    model_config = SettingsConfigDict(env_file=".env")
 

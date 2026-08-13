@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from backend.app.domain.user.value_object.get_user_name import UserName
+from backend.app.domain.user.value_object.user_info import UserName
 from backend.app.usecase.create_user.user_Repository import AbstractCreateUserRepository
 from backend.app.infrastructure.db.orm_entity.users.users import UsersORM
 

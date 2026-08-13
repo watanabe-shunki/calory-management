@@ -1,17 +1,10 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from dataclasses import dataclass
 
 from backend.app.infrastructure.db.orm_entity.users.users import UsersORM
-from backend.app.domain.user.value_object.user_info import UserEmail, UserPassword
-from backend.app.usecase.get_user.user_Query_Service import AbstractGetUserByEmailQueryService
-
-@dataclass
-class UserDTO:
-     email: UserEmail
-     password: UserPassword
-     is_active: bool
+from backend.app.domain.user.value_object.user_info import UserEmail
+from backend.app.usecase.get_user.user_Query_Service import AbstractGetUserByEmailQueryService, UserDTO
 
 
 class UsersQueryService(AbstractGetUserByEmailQueryService):

@@ -7,14 +7,13 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from pydeck.settings import Settings
 from passlib.context import CryptContext
 
 from backend.app.domain.user.value_object.user_info import UserEmail
 from backend.app.infrastructure.session import get_db_session
 from backend.app.infrastructure.security.get_user import UsersQueryService
 from backend.app.usecase.get_user.get_user import GetUserByEmailUseCase
-from backend.config import Settings
+from backend.settings import Settings
 
 
 router = APIRouter()

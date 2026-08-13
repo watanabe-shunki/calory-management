@@ -9,7 +9,7 @@ from backend.app.infrastructure.security.get_user import UsersQueryService
 from backend.app.infrastructure.session import get_db_session
 from backend.app.presentation.auth.login import get_settings
 from backend.app.usecase.get_user.get_user import GetUserByEmailUseCase
-from backend.config import Settings
+from backend.settings import Settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
