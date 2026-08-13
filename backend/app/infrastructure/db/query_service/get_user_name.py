@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 from dataclasses import dataclass
 
-from backend.app.domain.user.value_object.get_user_name import UserName, UserId
+from backend.app.domain.user.value_object.user_info import UserName, UserId
 from backend.app.usecase.get_user.user_Query_Service import AbstractGetUserNameQueryService
 from backend.app.infrastructure.db.orm_entity.users.users import UsersORM
 

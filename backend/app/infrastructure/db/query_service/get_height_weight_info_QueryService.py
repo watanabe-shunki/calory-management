@@ -5,7 +5,7 @@ from sqlalchemy import select
 from dataclasses import dataclass
 
 from backend.app.domain.body_info.value_object.get_body_info import BodyInfo
-from backend.app.domain.user.value_object.get_user_name import UserId
+from backend.app.domain.user.value_object.user_info import UserId
 from backend.app.domain.body_info.enums.activity_level import ActivityStatus
 from backend.app.usecase.get_height_weight_info.height_weight_info_Query_Service import AbstractsGetHeightWeightInfoQueryService
 from backend.app.infrastructure.db.orm_entity.body_profiles.body_profiles import BodyProfilesORM

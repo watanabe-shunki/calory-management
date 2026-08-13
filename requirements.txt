@@ -13,3 +13,5 @@ jinja2
 httpx
 python-dotenv
 jinja2
+pyjwt
+bcrypt

@@ -1,10 +1,10 @@
 from datetime import datetime
 from tokenize import String
 
-from sqlalchemy import Integer, String, DateTime
+from sqlalchemy import Integer, String, DateTime, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from backend.app.infrastructure.db.orm_entity.types import str30, str255
+from backend.app.infrastructure.db.orm_entity.types import str10, str30, str255
 from backend.app.infrastructure.db.orm_entity.orm_entity import Base
 
 
@@ -29,12 +29,29 @@ class UsersORM(Base):
 
     password_hash: Mapped[str255] = mapped_column(
         String(255),
-        nullable=False,
+    )
+
+    google_id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        unique=True,
     )
 
     name: Mapped[str30] = mapped_column(
         String(20),
         nullable=False,
+    )
+
+    auth_provider: Mapped[str10] = mapped_column(
+        String(10),
+        nullable=False,
+        comment="googleか通常かのステータスを保持する",
+    )
+
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True
     )
 
     created_at: Mapped[datetime] = mapped_column(

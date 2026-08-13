@@ -2,7 +2,7 @@ from fastapi import Depends, APIRouter
 from sqlalchemy.orm import Session
 from starlette import status
 
-from backend.app.domain.user.value_object.get_user_name import UserId
+from backend.app.domain.user.value_object.user_info import UserId
 from backend.app.domain.body_info.value_object.get_body_info import (
     BodyInfo,
     HeightCm,

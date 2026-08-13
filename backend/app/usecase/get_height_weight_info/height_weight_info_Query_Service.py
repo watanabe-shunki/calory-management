@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from backend.app.domain.body_info.value_object.get_body_info import BodyInfo
-from backend.app.domain.user.value_object.get_user_name import UserId
+from backend.app.domain.user.value_object.user_info import UserId
 
 class AbstractsGetHeightWeightInfoQueryService(ABC):
     @abstractmethod

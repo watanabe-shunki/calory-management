@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.app.domain.user.value_object.get_user_name import UserId
+from backend.app.domain.user.value_object.user_info import UserId
 from backend.app.infrastructure.session import get_db_session
 from backend.app.infrastructure.db.query_service.get_height_weight_info_QueryService import HeightWeightInfoQueryService
 from backend.app.usecase.get_height_weight_info.get_height_weight_info import GetHeightWeightInfoUseCase

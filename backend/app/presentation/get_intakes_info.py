@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.app.domain.user.value_object.get_user_name import UserId
+from backend.app.domain.user.value_object.user_info import UserId
 from backend.app.infrastructure.session import get_db_session
 from backend.app.infrastructure.db.query_service.get_intakes_QueryService import IntakesQueryService
 from backend.app.usecase.get_intakes.get_intakes_info import GetIntakesInfoUseCase
