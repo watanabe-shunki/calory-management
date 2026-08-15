@@ -1,6 +1,7 @@
 from backend.app.usecase.create_user.user_Repository import AbstractCreateUserRepository
 
-from backend.app.domain.user.value_object.user_info import UserName
+from backend.app.domain.user.value_object.user_info import Name, UserInfo
+
 
 class CreateUser:
     def __init__(
@@ -14,6 +15,6 @@ class CreateUser:
 
     def create_user(
             self,
-            user_name: UserName
+            user_info: UserInfo
     ) -> None:
-        self.__user_name_repository.create_user(user_name)
+        self.__user_name_repository.create_user(user_info)

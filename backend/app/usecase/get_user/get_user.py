@@ -1,6 +1,6 @@
 from abc import ABC
 
-from backend.app.domain.user.value_object.user_info import UserName, UserId, UserEmail
+from backend.app.domain.user.value_object.user_info import Name, Email
 from backend.app.infrastructure.security.get_user import UserDTO
 from backend.app.usecase.get_user.user_Query_Service import AbstractGetUserNameQueryService, \
     AbstractGetUserByEmailQueryService
@@ -18,9 +18,9 @@ class GetUserNameUserCase:
 
     def get_user_name(
             self,
-            user_id: UserId
-    ) -> UserName:
-        return self.__user_name_repository.get_user_name(user_id)
+            email: Email
+    ) -> Name:
+        return self.__user_name_repository.get_user_name(email)
 
 
 class GetUserByEmailUseCase:
@@ -35,6 +35,6 @@ class GetUserByEmailUseCase:
 
     def get_user_by_email(
             self,
-            email: UserEmail
+            email: Email
     ) -> UserDTO:
         return self.__user_by_email_repository.get_user_by_email(email)

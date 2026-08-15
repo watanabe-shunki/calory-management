@@ -3,14 +3,14 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 from dataclasses import dataclass
 
-from backend.app.domain.user.value_object.user_info import UserName, UserId
+from backend.app.domain.user.value_object.user_info import Name, UserId
 from backend.app.usecase.get_user.user_Query_Service import AbstractGetUserNameQueryService
 from backend.app.infrastructure.db.orm_entity.users.users import UsersORM
 
 
 @dataclass
 class UserNameDTO:
-    name: UserName
+    name: Name
 
 # 実施にDBテーブル作成作成していないので後日実施
 class UserNameQueryService(AbstractGetUserNameQueryService):
@@ -23,7 +23,7 @@ class UserNameQueryService(AbstractGetUserNameQueryService):
     def get_user_name(
             self,
             user_id: UserId
-    ) -> UserName:
+    ) -> Name:
         try:
             query = (
                 select(UsersORM.id)

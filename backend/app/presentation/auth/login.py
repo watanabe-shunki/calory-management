@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 
-from backend.app.domain.user.value_object.user_info import UserEmail
+from backend.app.domain.user.value_object.user_info import Email
 from backend.app.infrastructure.session import get_db_session
 from backend.app.infrastructure.security.get_user import UsersQueryService
 from backend.app.usecase.get_user.get_user import GetUserByEmailUseCase
@@ -28,7 +28,7 @@ def get_settings():
     return Settings()
 
 def get_user(
-    email: UserEmail,
+    email: Email,
     db_session: Session = Depends(get_db_session)
 ):
     user_by_email_repository = UsersQueryService(db_session)
@@ -42,7 +42,7 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 def authenticate_user(
-    email: UserEmail,
+    email: Email,
     password: str,
     db_session
 ):
@@ -86,7 +86,7 @@ async def login(
     # OAuth2PasswordRequestForm では項目名が username だが、
     # このアプリでは username に email を入れて認証する。
     user = authenticate_user(
-        UserEmail(form_data.username),
+        Email(form_data.username),
         form_data.password,
         db_session
     )

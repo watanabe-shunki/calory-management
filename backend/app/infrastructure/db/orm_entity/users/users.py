@@ -21,20 +21,20 @@ class UsersORM(Base):
 
     email: Mapped[str30] = mapped_column(
         String(30),
-        primary_key=True,
         unique=True,
         nullable=False,
         index=True
     )
 
-    password_hash: Mapped[str255] = mapped_column(
+    password_hash: Mapped[str255 | None] = mapped_column(
         String(255),
+        nullable=True
     )
 
-    google_id: Mapped[int] = mapped_column(
-        Integer,
-        primary_key=True,
+    google_id: Mapped[str | None] = mapped_column(
+        String(255),
         unique=True,
+        nullable=True,
     )
 
     name: Mapped[str30] = mapped_column(
