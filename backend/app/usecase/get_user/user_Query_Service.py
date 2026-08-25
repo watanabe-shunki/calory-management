@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 @dataclass
 class UserDTO:
+     user_id: int
      email: str
      password: str
      is_active: bool

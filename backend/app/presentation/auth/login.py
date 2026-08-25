@@ -90,7 +90,7 @@ async def login(
         form_data.password,
         db_session
     )
-
+    print(f"user: {user}")
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED

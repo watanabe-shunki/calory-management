@@ -1,5 +1,4 @@
 from pydantic.v1 import BaseSettings
-from pydantic_settings import SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -9,8 +8,9 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str
 
-    GOOGLE_CLIENT_ID: str
-    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_CLIENT_ID: str | None = None
+    GOOGLE_CLIENT_SECRET: str | None = None
 
-    model_config = SettingsConfigDict(env_file=".env")
+    class Config:
+        env_file = ".env"
 

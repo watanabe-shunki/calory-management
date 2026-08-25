@@ -25,6 +25,6 @@ class UsersQueryService(AbstractGetUserByEmailQueryService):
                     .where(UsersORM.email == email.value)
                )
                result = self.db_session.execute(query).scalar()
-               return UserDTO(result.email, result.password_hash, result.is_active)
+               return UserDTO(result.id, result.email, result.password_hash, result.is_active)
           except:
                raise HTTPException(status_code=404, detail="Email does not exist")

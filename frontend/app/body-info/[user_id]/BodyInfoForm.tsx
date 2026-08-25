@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function BodyInfoFormPage() {
+    const access_token = localStorage.getItem("token");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
     const [activityStatus, setActivityStatus] = useState("OFFICE");
@@ -11,13 +12,12 @@ export default function BodyInfoFormPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // 暫定対応
-        const user_id = 1;
 
-        const res = await fetch(`http://localhost:8000/create_body_info/${user_id}`, {
+        const res = await fetch(`http://localhost:8000/create_body_info`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify({
                 height,

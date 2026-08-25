@@ -1,12 +1,46 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import BodyInfoForm from "./BodyInfoForm";
 
-export default async function BodyInfoPage() {
-    const res = await fetch(
-        "http://localhost:8000/get_body_info/1", // "http://localhost:8000/get_body_info/${user_id}"の記述は後日対応。一旦user_id=1でハードコーディングしておく
-        { cache: "no-store" }
-    );
+export default function BodyInfoPage() {
+    const [bodyInfo, setBodyInfo] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const bodyInfo = await res.json()
+    useEffect(() => {
+        const access_token = window.localStorage.getItem("access_token");
+        console.log("access_token", access_token);
+        const fetchBodyInfo = async () => {
+            try {
+                const res = await fetch("http://localhost:8000/get_body_info", {
+                    cache: "no-store",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                if (!res.ok) {
+                    return { data: null, error: new Error("Not Found") };
+                }
+
+                const data = await res.json();
+                console.log("bodyInfo", data.sub);
+                setBodyInfo(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchBodyInfo();
+        console.log("bodyInfo", bodyInfo);
+    }, []);
+
+if (isLoading) {
+    return <div className="container-app">読み込み中...</div>;
+}
 
     return (
         <div className="container-app">
@@ -15,21 +49,21 @@ export default async function BodyInfoPage() {
             <div className="card">
                 <div className="kpi">
                     <div className="kpi-label">身長</div>
-                    <div className="kpi-value">{bodyInfo.height} cm</div>
+                    <div className="kpi-value">{bodyInfo?.height ?? "-"} cm</div>
                 </div>
             </div>
 
             <div className="card mt-3">
                 <div className="kpi">
                     <div className="kpi-label">体重</div>
-                    <div className="kpi-value">{bodyInfo.weight} kg</div>
+                    <div className="kpi-value">{bodyInfo?.weight ?? "-"} kg</div>
                 </div>
             </div>
 
             <div className="card mt-3">
                 <div className="kpi">
                     <div className="kpi-label">生活レベル</div>
-                    <div className="kpi-value">{bodyInfo.activity_status}</div>
+                    <div className="kpi-value">{bodyInfo?.activity_status ?? "-"}</div>
                 </div>
             </div>
             {/* 登録フォームを表示 */}
