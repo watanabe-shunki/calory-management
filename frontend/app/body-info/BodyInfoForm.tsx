@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function BodyInfoFormPage() {
-    const access_token = localStorage.getItem("token");
+    const access_token = localStorage.getItem("access_token");
+    console.log("token", access_token);
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
     const [activityStatus, setActivityStatus] = useState("OFFICE");
@@ -25,6 +26,7 @@ export default function BodyInfoFormPage() {
                 activity_status: activityStatus,
             }),
         });
+        console.log("res", res);
 
         if (!res.ok) {
             console.error("登録失敗" + res.status);
