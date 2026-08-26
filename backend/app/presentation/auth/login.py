@@ -77,7 +77,7 @@ def create_access_token(
     return encoded_jwt
 
 # ログインAPI
-@router.post( "/token" )
+@router.post( "/login" )
 async def login(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     settings: Annotated[Settings, Depends(get_settings)],

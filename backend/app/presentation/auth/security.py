@@ -26,6 +26,7 @@ def get_current_user(
     )
 
     try:
+        print("token:", token)
         payload = jwt.decode(
             token,
             settings.SECRET_KEY,
