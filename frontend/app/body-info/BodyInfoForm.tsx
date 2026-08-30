@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+interface BodyInfoFormProps {
+    onSuccess: () => Promise<void>;
+}
 
-export default function BodyInfoFormPage() {
+export default function BodyInfoForm({ onSuccess }: BodyInfoFormProps) {
     const access_token = localStorage.getItem("access_token");
     console.log("token", access_token);
     const [height, setHeight] = useState("");
@@ -13,6 +16,12 @@ export default function BodyInfoFormPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const access_token = localStorage.getItem("access_token");
+        if (!access_token) {
+            console.error("No access token found");
+            router.push("/login");
+            return;
+        }
 
         const res = await fetch(`http://localhost:8000/create_body_info`, {
             method: "POST",
@@ -44,6 +53,7 @@ export default function BodyInfoFormPage() {
         setWeight("");
         setActivityStatus("OFFICE");
         setMessage("身体情報が正常に登録されました。");
+        await onSuccess();
 
     };
 

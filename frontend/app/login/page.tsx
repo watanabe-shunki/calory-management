@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const searchParams = useSearchParams();
     const router = useRouter();
+    const getMessage = searchParams.get("message");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -69,6 +72,9 @@ export default function LoginPage() {
                 </button>
                 {message && (
                     <p>{message}</p>
+                )}
+                {getMessage && (
+                    <p>{getMessage}</p>
                 )}
             </form>
         </div>
