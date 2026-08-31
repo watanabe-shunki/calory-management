@@ -1,84 +1,48 @@
-"use client";
 
-import { useState } from "react";
+import FoodsInfoFrom from "./FoodsInfoForm";
 
-export default function FoodsInfoFormPage() {
-    const [foodName, setFoodsName] = useState("");
-    const [calories, setCalories] = useState("");
-    const [protein, setProtein] = useState("");
+export default async function FoodsInfoPage() {
+    const user_id = 1;
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const res = await fetch(
+        `http://localhost:8000/get_intakes_info/${user_id}`,
+        { cache: "no-store"}
+    );
 
-        const res = await fetch("http://localhost:8000/create_foods_info", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                foods_name: foodName,
-                calory: Number(calories),
-                protein: Number(protein),
-            }),
-        });
+    const intakes = await res.json()
+    
+    let all_calory = 0;
+    let all_protein = 0;
 
-        if (!res.ok) {
-            console.error("登録失敗" + res.status);
-            const text = await res.text();
-            console.log("response", text);
-            setMessage("登録に失敗しました。");
-            return;
-        }
-
-        const data = await res.json();
-        console.log("登録成功", data);
-        setFoodsName("");
-        setCalories("");
-        setProtein("");
-        setMessage("登録が完了しました。");
-    };
-
-    const [message, setMessage] = useState("");
-
+    intakes.forEach((intake: any) => {
+        all_calory += parseInt(intake.calory);
+        all_protein += parseInt(intake.protein);
+    });
     return (
         <div className="container-app">
-            <h1 className="text-2xl font-bold mb-4">食品情報登録</h1>
-            
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>食品名:</label>
-                    <input
-                        className="input"
-                        type="text"
-                        value={foodName}
-                        onChange={(e) => setFoodsName(e.target.value)}
-                />
-                </div>
-                <div>
-                    <label>カロリー:</label>
-                    <input
-                        className="input"
-                        type="number"
-                        value={calories}
-                        onChange={(e) => setCalories(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>タンパク質:</label>
-                    <input
-                        className="input"
-                        type="number"
-                        value={protein}
-                        onChange={(e) => setProtein(e.target.value)}
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary w-full">
-                    登録
-                </button>
-                {message && (
-                    <p className="mt-4 text-center">{message}</p>
-                )}
-            </form>
+            <h1 className="text-2xl font-bold mb-6">食事一覧</h1>
+            <table className="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr>
+                        <th className="border border-gray-300 px-4 py-2">食事名</th>
+                        <th className="border border-gray-300 px-4 py-2">カロリー</th>
+                        <th className="border border-gray-300 px-4 py-2">タンパク質</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {intakes.map((intake: any, index: number) => (
+                        <tr key={index}>
+                            <td className="border border-gray-300 px-4 py-2">{intake.food_name}</td>
+                            <td className="border border-gray-300 px-4 py-2">{intake.calory} kcal</td>
+                            <td className="border border-gray-300 px-4 py-2">{intake.protein} g</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <p>合計カロリー: {all_calory} kcal</p>
+            <p>合計タンパク質: {all_protein} g</p>
+
+            <FoodsInfoFrom />
         </div>
     );
-};
+}

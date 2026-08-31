@@ -35,6 +35,11 @@ def get_body_info_by_user_id(
 
     result = usecase.get_height_weight_info(user_id)
     print(result)
+    if not result:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Body information not found."
+        )
     return BodyInfoResponse(
         height=str(result.height), # TODO: ここ強引に型を変えている感じあるので後で調査
         weight=str(result.weight), # TODO: ここ強引に型を変えている感じあるので後で調査
