@@ -27,13 +27,13 @@ app.add_middleware(
 )
 
 for router in [
-    get_user.router,
     create_user.router,
+    login.router,
+    get_user.router,
     get_height_weight_info.router,
     create_body_info.router,
     create_foods_info.router,
     get_intakes_info.router,
-    login.router,
 ]:
     app.include_router(router)
 

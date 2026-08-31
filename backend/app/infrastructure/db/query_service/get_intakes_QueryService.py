@@ -1,8 +1,9 @@
 from datetime import date
+
 from fastapi import HTTPException
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, and_
 
 from backend.app.domain.foods_info.value_object.foods_info import (
     FoodsInfo, Calory, Protein
@@ -31,7 +32,10 @@ class IntakesQueryService(AbstractsGetIntakesInfoQueryService):
                     IntakeORM.protein
                 )
                 .where(
-                    IntakeORM.date == date.today()
+                    and_(
+                        user_id.value == IntakeORM.user_id,
+                        IntakeORM.date == date.today()
+                    )
                 )
             )
             result = self.db_session.execute(query).all()

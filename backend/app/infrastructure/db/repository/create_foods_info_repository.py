@@ -20,7 +20,7 @@ class CreateFoodsInfoRepository(AbstractCreateFoodsInfoRepository):
     ):
         try:
             intake_entity = IntakeORM(
-                user_id=user_id,
+                user_id=user_id.value,
                 food_name=foods_info.foods_name.foodsname,
                 calorie=foods_info.calories.calories,
                 protein=foods_info.protein.protein,
