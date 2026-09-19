@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function FoodsInfoFormPage() {
+interface FoodsInfoFormProps {
+    onSuccess: () => Promise<void>;
+}
+
+export default function FoodsInfoFormPage({ onSuccess }: FoodsInfoFormProps) {
     const [foodName, setFoodsName] = useState("");
     const [calories, setCalories] = useState("");
     const [protein, setProtein] = useState("");
@@ -11,11 +15,18 @@ export default function FoodsInfoFormPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const access_token = localStorage.getItem("access_token");
+        if (!access_token) {
+            console.error("No access token found");
+            router.push("/login");
+            return;
+        }
 
         const res = await fetch("http://localhost:8000/create_foods_info", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify({
                 foods_name: foodName,
@@ -43,6 +54,7 @@ export default function FoodsInfoFormPage() {
         setCalories("");
         setProtein("");
         setMessage("登録が完了しました。");
+        await onSuccess();
     };
 
     const [message, setMessage] = useState("");
@@ -75,6 +87,7 @@ export default function FoodsInfoFormPage() {
                     <input
                         className="input"
                         type="number"
+                        step="any"
                         value={protein}
                         onChange={(e) => setProtein(e.target.value)}
                     />

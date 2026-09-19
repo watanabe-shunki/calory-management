@@ -8,12 +8,6 @@ from backend.app.infrastructure.session import get_db_session
 from backend.app.infrastructure.db.query_service.get_height_weight_info_QueryService import HeightWeightInfoQueryService
 from backend.app.presentation.auth.security import get_current_user
 from backend.app.usecase.get_height_weight_info.get_height_weight_info import GetHeightWeightInfoUseCase
-from backend.app.domain.body_info.value_object.get_body_info import (
-    HeightCm,
-    WeightKg,
-    ActivityStatus,
-)
-from backend.app.presentation.model.requestbody.get_height_weight_info.request_get_height_weight_info import HeightWeightInfoRequest
 from backend.app.presentation.model.responsebody.get_height_weight_info.response_get_height_weight_info import BodyInfoResponse
 from backend.app.usecase.get_user.user_Query_Service import UserDTO
 
@@ -31,10 +25,8 @@ def get_body_info_by_user_id(
     height_weight_info_repository = HeightWeightInfoQueryService(session)
     usecase = GetHeightWeightInfoUseCase(height_weight_info_repository)
     user_id = UserId(current_user.user_id)
-    print(user_id)
 
     result = usecase.get_height_weight_info(user_id)
-    print(result)
     if not result:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
