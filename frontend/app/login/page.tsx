@@ -35,7 +35,7 @@ export default function LoginPage() {
             }
             const data = await res.json();
             localStorage.setItem("access_token", data.access_token);
-            router.push("/body-info");
+            router.push("/dashboard");
         } catch (error) {
             console.error(error);
             setMessage("ログインに失敗しました。");

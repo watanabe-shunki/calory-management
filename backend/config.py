@@ -29,11 +29,10 @@ app.add_middleware(
 for router in [
     create_user.router,
     login.router,
-    get_user.router,
     get_height_weight_info.router,
     create_body_info.router,
     create_foods_info.router,
     get_intakes_info.router,
+    get_user.router,
 ]:
     app.include_router(router)
-

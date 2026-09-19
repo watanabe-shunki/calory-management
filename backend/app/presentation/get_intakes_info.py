@@ -15,7 +15,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/get_intakes_info/{user_id}",
+    "/get_intakes_info",
     response_model=list[IntakesInfoResponse],
     summary="食事情報を取得するAPI"
 )
@@ -29,7 +29,7 @@ def get_intakes_info(
     result = usecase.get_intakes_info(user_id=user_id)
 
     if result is None:
-        return None
+        return []
     return [
         IntakesInfoResponse(
             food_name=row.foods_name,
