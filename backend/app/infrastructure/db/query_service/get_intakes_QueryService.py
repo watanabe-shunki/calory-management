@@ -27,9 +27,7 @@ class IntakesQueryService(AbstractsGetIntakesInfoQueryService):
         try:
             query = (
                 select(
-                    IntakeORM.food_name,
-                    IntakeORM.calorie,
-                    IntakeORM.protein
+                    IntakeORM
                 )
                 .where(
                     and_(
@@ -42,6 +40,7 @@ class IntakesQueryService(AbstractsGetIntakesInfoQueryService):
             # 空でもそのまま返却
             return [
                 FoodsInfo(
+                    _id=intake.id,
                     foodsname=intake.food_name,
                     calories=intake.calorie,
                     protein=intake.protein

@@ -2,6 +2,10 @@ from pydantic import BaseModel, Field
 
 
 class IntakesInfoResponse(BaseModel):
+    id: int = Field(
+        ...,
+        description="id"
+    )
     food_name: str = Field(
         ...,
         description="FoodsName"
