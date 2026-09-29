@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from mangum import Mangum
 
 from backend.app.presentation import (
     get_user
@@ -36,3 +37,5 @@ for router in [
     get_user.router,
 ]:
     app.include_router(router)
+
+handler = Mangum(app)
