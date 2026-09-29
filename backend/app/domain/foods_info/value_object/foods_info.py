@@ -59,11 +59,13 @@ class FoodsInfo:
     def __init__(
         self,
         # mealdate: MealDate,
+        _id: int,
         foodsname: FoodsName,
         calories: Calory,
         protein: Protein,
     ):
         # self._mealdate = mealdate
+        self.id = _id
         self._foodsname = foodsname
         self._calories = calories
         self._protein = protein

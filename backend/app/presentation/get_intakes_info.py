@@ -32,6 +32,7 @@ def get_intakes_info(
         return []
     return [
         IntakesInfoResponse(
+            id=row.id,
             food_name=row.foods_name,
             calory=row.calories,
             protein=row.protein
