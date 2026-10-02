@@ -5,6 +5,7 @@ pydantic
 streamlit
 psycopg2-binary
 pymysql
+mangum
 cryptography
 pytest
 alembic
